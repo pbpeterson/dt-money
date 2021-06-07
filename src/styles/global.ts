@@ -76,4 +76,17 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: .25rem;
   }
 
+  .react-modal-close{
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
+    transition: filter .2s;
+
+    &:hover{
+      filter: brightness(.8);
+    }
+  }
+
 `
