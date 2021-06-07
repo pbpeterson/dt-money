@@ -1,14 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { Container } from "./styles";
 
+interface Transaction {
+  id: number;
+  title:string;
+  amount:number;
+  type:string;
+  category:string;
+  createAt:string
+}
+
 export default function TransactionsTable() {
+
+  const [transactions, setTransactions] = useState([])
 
   useEffect(()=>{
     async function request(){
       const req = await api('/transactions')
       const json = req.data
-      console.log(json)
+      setTransactions(json.transactions)
     }
     request()
   },[])
@@ -25,18 +36,24 @@ export default function TransactionsTable() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className='title'>Desenvolvimento de Website</td>
-            <td className='deposit'>R$12.000</td>
-            <td>Desenvolvimento</td>
-            <td>20/02/2021</td>
-          </tr>
-          <tr>
-            <td className='title'>Aluguel</td>
-            <td className='withdraw'>-R$1.000</td>
-            <td>Desenvolvimento</td>
-            <td>20/05/2021</td>
-          </tr>
+          {transactions.map((transacao: Transaction)=>(
+            <tr key={transacao.id}>
+              <td className='title'>{transacao.title}</td>
+              <td className={transacao.type}>{transacao.type ==='withdraw'? `-${new Intl.NumberFormat('pt-BR',{
+                style:'currency',
+                currency:'BRL'
+              }).format(transacao.amount)}`
+              : 
+              `${new Intl.NumberFormat('pt-BR',{
+                style:'currency',
+                currency:'BRL'
+              }).format(transacao.amount)}`}</td>
+              <td>{transacao.category}</td>
+              <td>{new Intl.DateTimeFormat('pt-BR').format(
+                new Date(transacao.createAt)
+              )}</td>
+            </tr>
+            ))}
         </tbody>
       </table>
     </Container>
