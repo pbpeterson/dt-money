@@ -1,4 +1,5 @@
 import styled, {createGlobalStyle} from 'styled-components'
+import {transparentize} from 'polished'
 
 export const GlobalStyle = createGlobalStyle`
   :root{
@@ -94,12 +95,24 @@ export const TransactionTypeContainer = styled.div`
   margin: 1rem 0;
   display: flex;
   
-  button{
+`
+
+interface RadioBoxProps{
+  isActive: boolean;
+  activeColor: 'green' | 'red';
+}
+
+const colors = {
+  green: '#33cc95',
+  red: '#e52e4d'
+}
+
+export const RadioBox = styled.button<RadioBoxProps>`
     flex: 1;
     height: 4rem;
     border: 1px solid #d7d7d7;
     border-radius: .25rem;
-    background: transition;
+    background: ${(props) => props.isActive ? transparentize(0.7,colors[props.activeColor]) : ''};
     display: flex;
     align-items: center;
     justify-content:center;
@@ -108,7 +121,7 @@ export const TransactionTypeContainer = styled.div`
     margin-left: .5rem;
   }
 
-  transition: border-color .4s;
+  transition: border-color .2s;
 
   &:hover{
       border-color: #aaa;
@@ -124,6 +137,5 @@ export const TransactionTypeContainer = styled.div`
     margin-left: 1rem;
     font-size: 1rem;
     color: var(--text-title);
-  }
   }
 `
