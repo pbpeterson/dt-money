@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import styled, {createGlobalStyle} from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   :root{
@@ -88,5 +88,42 @@ export const GlobalStyle = createGlobalStyle`
       filter: brightness(.8);
     }
   }
+`
 
+export const TransactionTypeContainer = styled.div`
+  margin: 1rem 0;
+  display: flex;
+  
+  button{
+    flex: 1;
+    height: 4rem;
+    border: 1px solid #d7d7d7;
+    border-radius: .25rem;
+    background: transition;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+
+    &+button{
+    margin-left: .5rem;
+  }
+
+  transition: border-color .4s;
+
+  &:hover{
+      border-color: #aaa;
+    }
+
+  img{
+    width: 20px;
+    height: 20px;
+  }
+
+  span{
+    display: inline-block;
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: var(--text-title);
+  }
+  }
 `
