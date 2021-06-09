@@ -43,7 +43,7 @@ export default function Summary() {
             <p>Saídas</p>
             <img src={outcomeImg} alt="" />
           </header>
-          <strong>-{new Intl.NumberFormat('pt-BR',{
+          <strong>{new Intl.NumberFormat('pt-BR',{
                 style:'currency',
                 currency:'BRL'
               })

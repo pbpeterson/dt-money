@@ -6,6 +6,10 @@ export const Container = styled.div`
   gap:2rem;
   margin-top: -10rem;
 
+  @media(max-width:40rem){
+    overflow-x: scroll;
+  }
+
   div{
     background: var(--shape);
     padding: 1.5rem 2rem;
@@ -17,13 +21,14 @@ export const Container = styled.div`
       align-items: center;
       justify-content: space-between;
     }
-
     strong{
       display: block;
       margin-top: 1rem;
       font-size: 2rem;
       font-weight: 500;
       line-height: 3rem;
+    }:nth-of-type(2){
+      color: var(--red)
     }
     &.hightlight-background{
       background: var(--green);
